@@ -1,0 +1,5 @@
+Pex8_10_1.py	Python代码参考了司守奎的书提供的代码（Logistic+非线性最小二乘拟合）
+Pex8_10_2.py	Python代码参考了司守奎的书提供的代码（Logistic+线性最小二乘拟合）
+Pop_Pre.py		将数据换成本题的数据进行预测，模型拟合的效果一般，可能哪里存在了问题
+Population_Prediction.m		利用MATLAB实现的人口预测，Logistic+非线性最小二乘拟合/线性最小二乘拟合），拟合效果符合预期
+Logitic_Pop.m				MATLAB的函数文件，功能为当前人口预测的Logistic模型，在Population_Prediction.m中进行了调用
