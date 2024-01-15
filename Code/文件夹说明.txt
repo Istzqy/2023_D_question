@@ -1,3 +1,4 @@
 修改时间240102
-Economy_prediction		第二问经济预测模型相关代码与文件
-population_prediction	第二问人口预测模型相关代码与文件（MATLAB代码好用，利用Logistic模型，线性最小二乘与非线性最小二乘拟合模型参数）
+Economy_prediction					第二问经济预测模型相关代码与文件
+population_prediction				第二问人口预测模型相关代码与文件（MATLAB代码好用，利用Logistic模型，线性最小二乘与非线性最小二乘拟合模型参数）
+energyConsumption_prediction		第二问能源消费量预测

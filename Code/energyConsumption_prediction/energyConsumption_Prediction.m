@@ -100,6 +100,8 @@ correlation_matrix = corrcoef(x);
 % y_gu=[[ones(18,1),x(：,:)]*b]1;%用岭回归模型求出来的函数估计值（向量）
 
 %% 岭回归预测
+ridge_x= [pop gdp];
+ridge_y = tce;
 k = 0:0.1:10;
 B = ridge(ridge_y,ridge_x,k,0);
 for  k1 = 1:length(k)
@@ -108,22 +110,34 @@ for  k1 = 1:length(k)
     wucha(k1)=sum(abs(ridge_y-yn)./ridge_y)/length(ridge_y);
 end
 figure(5)
-plot(1:length(k),wucha,'LineWidth',2)
-ylabel('相对误差')
-xlabel('岭参数')
+subplot(2,1,1);
+plot(k(1:50),wucha(1:50),'LineWidth',2);
+ylabel('相对误差');
+xlabel('岭参数');
 
 index=find(wucha==min(wucha));
 xishu = ridge(ridge_y,ridge_x,k(index),0);
 y_p= xishu(1)+ridge_x*xishu(2:end);
-figure(6)
-plot(t1,tce,'m--o','LineWidth',1);
+subplot(2,1,2);
+plot(t1,tce,'m--o','LineWidth',2);
 hold on
-plot(t1,y_p,'b--*','LineWidth',1);
+plot(t1,y_p,'b--*','LineWidth',2);
 legend({'原始数据','岭回归预测'},'Location','northwest');
+xlabel('年份');
+ylabel('能源消耗量(万tce)');
 
 
-
-
+%% 2021~2060能源消费量预测
+popPre = xlsread('D:\FPGA_MATLAB_Learning\数学建模\结课报告\D题\Code\population_prediction\prePopData.xlsx');
+preGdp = xlsread('D:\FPGA_MATLAB_Learning\数学建模\结课报告\D题\Code\Economy_prediction\preGdpData.xlsx');
+ridge_x1 = [popPre preGdp];
+enePre = xishu(1)+ridge_x1*xishu(2:end);
+t2 = 2010:2060;
+enePre(1:11) = tce;
+figure(7)
+plot(t2,enePre,'B--o','LineWidth',1);
+legend('岭回归预测能源消费量','Location','northwest');
+xlswrite('D:\FPGA_MATLAB_Learning\数学建模\结课报告\D题\Code\energyConsumption_prediction\enePredata.xlsx',enePre);
 
 
 

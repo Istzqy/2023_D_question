@@ -53,7 +53,7 @@ t = [2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020];
 p = [7869.34 8022.99 8119.81 8192.44 8281.09 8315.11 8381.47 8423.50 8446.19 8469.09 8477.26];
 t = t-2010; %整体减去1780
 para = [10000,0.02]; %待定参数x的初值（自己根据实际情况给出初值，之后再不断调整；其中第一个参数为最大人口数，第二个参数为人口增长率）
-fitPara = lsqcurvefit('Logitic_Pop',para,t,p); %使用函数求得最终的（xm，r）
+fitPara = lsqcurvefit('Logitic_Pop',para,t,p); %使用函数求得最终的（xm=8549.75，r=0.2402）
 p1 = Logitic_Pop(fitPara,t);
 figure(1)
 plot(t+2010,p,'o',t+2010,p1,'-r*')
@@ -75,6 +75,8 @@ title('Logistic模型拟合图');
 xlabel('年份');
 ylabel('人口数(万人)');
 legend('非线性最小二乘拟合预测人口数量');
+xlswrite('D:\FPGA_MATLAB_Learning\数学建模\结课报告\D题\Code\population_prediction\prePopData.xlsx',p2');
+
 
 %%
 
